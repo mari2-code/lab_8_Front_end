@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Restaurant Menu</title>
+  <!--font awesome cdn link-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  
+  <!--fonts link-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="index.html">
+<style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: #FFF8F0;
+      color: #3E2A1F;
+      line-height: 1.4;
+      padding: 2rem;
+    }
+    img { display: block; max-width: 100%; }
+
+    
+    .menu-title {
+      text-align: center;
+      font-size: 3.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .menu-title + hr {
+      border: none;
+      border-top: 2px solid #3E2A1F;
+      margin: 1rem auto 2rem;
+      width: 80%;
+    }
+
+    
+    .main-dishes {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+      grid-auto-rows: auto;
+    }
+    .section-title {
+    grid-column: 1 / -1;       
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: #3E2A1F;
+    margin: 2rem 0 1rem;       
+    border-bottom: 2px solid #DDDDDD;
+    padding-bottom: 0.5rem;
+    
+  }
+
+    .dish-card {
+      background: #FFFFFF;
+      border: 1px solid #DDDDDD;
+      border-radius: 0.5rem;
+      overflow: hidden;
+      box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.1);
+      display: flex;
+      align-items: flex-start;
+      padding: 1rem;
+      position: relative;          /* картка – контейнер для позиціонування */
+    }
+
+    .dish-card img {
+      width: 80px;
+      height: 80px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-right: 2rem;
+      border: 2px solid #ffa600;
+    }
+    .dish-info {
+      position: relative;          /* контейнер для сердечка */
+      width: 100%;
+    }
+
+    .dish-info h3 {
+      font-size: 1.25rem;
+      margin-bottom: 0.5rem;
+      margin-top: 1rem;
+      padding-right: 40px;        /* резерв місця під сердечко */
+      text-transform: none;
+}
+
+.dish-info .favorite {
+      position: absolute;
+      top: 0.8rem;                /* відступ від верху картки */
+      right: 1.5rem;              /* відступ від правого краю картки */
+      margin: 0;
+      font-size: 2rem;
+      color: #ffa600;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: transform 0.2s;
+}
+
+
+    .dish-info .favorite:hover {
+      transform: scale(1.2);
+    }
+    .dish-info .price {
+      color: #ffa600;
+      font-weight: bold;
+      margin-bottom: 0.25rem;
+    }
+    .dish-info .desc {
+      font-size: 0.9rem;
+      color: #3E2A1F;
+      text-transform: none;
+    }
+
+    
+    .tables + hr {
+      border: none;
+      border-top: 1px solid #3E2A1F;
+      margin: 2rem auto;
+      width: 80%;
+    }
+
+    
+    .tables {
+      display: flex;
+      gap: 3rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .table-container {
+      background: #FFFFFF;
+      border: 1px solid #DDDDDD;
+      border-radius: 0.5rem;
+      padding: 1rem 1.5rem;
+      box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.05);
+      min-width: 200px;
+      flex: 1 1 250px;
+    }
+    .table-container h2 {
+      font-size: 1.2rem;
+      margin-bottom: 0.75rem;
+      text-transform: none
+    }
+    .table-container table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .table-container td {
+      padding: 0.25rem 0;
+      font-size: 0.95rem;
+    }
+    .table-container td:first-child {
+      color: #3E2A1F;
+    }
+    .table-container td:last-child {
+      text-align: right;
+      color: #ffa600;
+      font-weight: bold;
+    }
+    .table-container tr + tr td {
+      border-top: 1px solid #DDDDDD;
+    }
+
+    /* --- Responsive --- */
+    @media (max-width: 600px) {
+      .main-dishes { grid-template-columns: 1fr; }
+      .tables { flex-direction: column; align-items: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <h1 class="menu-title">OUR MENU</h1>
+  <hr>
+
+  <div class="main-dishes">
+    <div class="section-title">Сніданки</div>
+    <div class="dish-card">
+      <img src="images/BREAKFAST (1).jpg" alt="Гарбузовий крем-суп">
+      <div class="dish-info">
+        <h3>Гарбузовий крем-суп <i class="far fa-heart favorite"></i></h3>
+        <p class="price">180</p>
+        <p class="desc">арбуз, вершки, гарбузове насіння, зелень, сіль, перець</p>
+      </div>
+    </div>
+    <div class="dish-card">
+      <img src="images/BREAKFAST (2).jpg" alt="Зелений будді-боул">
+      <div class="dish-info">
+        <h3>Зелений будді-боул <i class="far fa-heart favorite"></i></h3>
+        <p class="price">220</p>
+        <p class="desc">Кіноа, авокадо, шпинат, помідори черрі, броколі, соус тахіні</p>
+      </div>
+    </div>
+    <div class="dish-card">
+      <img src="images/BREAKFAST (3).jpg" alt="Сніданкова яєчня">
+      <div class="dish-info">
+        <h3>Сніданкова яєчня <i class="far fa-heart favorite"></i></h3>
+        <p class="price">150</p>
+        <p class="desc">Яйця, шпинат, черрі, чорний хліб, оливкова олія, сіль, перець</p>
+      </div>
+    </div>
+    <div class="dish-card">
+      <img src="images/BREAKFAST (4).jpg" alt="Теплий салат із телятиною">
+      <div class="dish-info">
+        <h3>Теплий салат із телятиною <i class="far fa-heart favorite"></i></h3>
+        <p class="price">240</p>
+        <p class="desc">Скибки телятини, мікс салатних листків, горіхи кеш’ю, вінегрет</p>
+      </div>
+    </div>
+    
+    <div class="section-title">Основні страви</div>
+    <div class="dish-card">
+      <img src="images/Main (1).jpg" alt="Сирний чізбургер “Дріп”">
+      <div class="dish-info">
+        <h3>Сирний чізбургер “Дріп” <i class="far fa-heart favorite"></i></h3>
+        <p class="price">340</p>
+        <p class="desc">М’ясна котлета, подвійний чеддер, бекон, карамелізована цибуля, соус BBQ, булочка бріош</p>
+      </div>
+    </div>
+    <div class="dish-card">
+      <img src="images/Main (2).jpg" alt="Лосось запечений у вершковому гратені">
+      <div class="dish-info">
+        <h3>Лосось запечений у вершковому гратені <i class="far fa-heart favorite"></i></h3>
+        <p class="price">480</p>
+        <p class="desc">Філе лосося, вершки, шпинат, часник, пармезан, лимон, зелень</p>
+      </div>
+    </div>
+    <div class="dish-card">
+      <img src="images/Main (3).jpg" alt="Качина грудинка з гарніром">
+      <div class="dish-info">
+        <h3>Качина грудинка з гарніром <i class="far fa-heart favorite"></i></h3>
+        <p class="price">520</p>
+        <p class="desc">Філе качки, медово-гірчичний маринад, кейл, печена картопля</p>
+      </div>
+    </div>
+    <div class="dish-card">
+      <img src="images/meat.jpg" alt="Свиняча відбивна “Фермерська”">
+      <div class="dish-info">
+        <h3>Свиняча відбивна “Фермерська” <i class="far fa-heart favorite"></i></h3>
+        <p class="price">360</p>
+        <p class="desc">Відбивна зі свинини, дустована картопля, розмарин, часник, оливкова олія</p>
+      </div>
+    </div>
+    <div class="section-title">Салати</div>
+    <div class="dish-card">
+      <img src="images/Salad (1).jpg" alt="Гавайський поке-боул">
+      <div class="dish-info">
+        <h3>Гавайський поке-боул <i class="far fa-heart favorite"></i></h3>
+        <p class="price">350</p>
+        <p class="desc">Рис, свіжий лосось, авокадо, морква, едамаме, соєвий соус, кунжут</p>
+      </div>
+    </div>
+    <div class="dish-card">
+      <img src="images/Salad (2).jpg" alt="Салат з лососем і кіноа">
+      <div class="dish-info">
+        <h3>Салат з лососем і кіноа <i class="far fa-heart favorite"></i></h3>
+        <p class="price">320</p>
+        <p class="desc">Кіноа, слабосолений лосось, кейл, огірок, черрі, кунжут, лимонний дресинг</p>
+      </div>
+    </div>
+    <div class="dish-card">
+      <img src="images/Salad (3).jpg" alt="Зелений боул “Вітамінка”">
+      <div class="dish-info">
+        <h3>Зелений боул “Вітамінка” <i class="far fa-heart favorite"></i></h3>
+        <p class="price">280</p>
+        <p class="desc">Мікс салатного листя, авокадо, огірок, броколі, рукола, горіховий соус</p>
+      </div>
+    </div>
+    <div class="dish-card">
+      <img src="images/spageti.jpg" alt="Удон з яловичиною теріякі">
+      <div class="dish-info">
+        <h3>Удон з яловичиною теріякі <i class="far fa-heart favorite"></i></h3>
+        <p class="price">350</p>
+        <p class="desc">Локшина удон, яловичина в соусі теріякі, зелена цибуля, кунжут, соус чилі</p>
+      </div>
+    </div>
+    <div class="section-title">Десерти</div>
+    <div class="dish-card">
+      <img src="images/Dessert (1).jpg" alt="Сніданковий боул із ягодами">
+      <div class="dish-info">
+        <h3>Сніданковий боул із ягодами <i class="far fa-heart favorite"></i></h3>
+        <p class="price">270</p>
+        <p class="desc">Натуральний йогурт, гранола, полуниця, чорниця, мед</p>
+      </div>
+    </div>
+    <div class="dish-card">
+      <img src="images/Dessert (2).jpg" alt="Асорті морозива">
+      <div class="dish-info">
+        <h3>Асорті морозива <i class="far fa-heart favorite"></i></h3>
+        <p class="price">120</p>
+        <p class="desc">Два шари морозива (полуничне & ванільне) у хрусткому вафельному ріжку</p>
+      </div>
+    </div>
+    <div class="dish-card">
+      <img src="images/Dessert (3).jpg" alt="Зелений суперфуд-боул">
+      <div class="dish-info">
+        <h3>Зелений суперфуд-боул <i class="far fa-heart favorite"></i></h3>
+        <p class="price">280</p>
+        <p class="desc">Мікс салатного листя, авокадо, огірки, кіноа, насіння чіа, мигдаль</p>
+      </div>
+    </div>
+    <div class="dish-card">
+      <img src="images/waffles (1).jpg" alt="Вафлі з ягодами та шоколадом">
+      <div class="dish-info">
+        <h3>Вафлі з ягодами та шоколадом <i class="far fa-heart favorite"></i></h3>
+        <p class="price">200</p>
+        <p class="desc">Пухкі бельгійські вафлі, полуничний соус, темний шоколад</p>
+      </div>
+    </div>
+  
+  </div>
+
+  <div class="tables">
+    <div class="table-container">
+      <h2>Безалкогольні напої</h2>
+      <table>
+        <tr><td>Домашній лимонад (лайм–м’ята)</td><td>65</td></tr>
+        <tr><td>Персиковий холодний чай</td><td>55</td></tr>
+        <tr><td>Айс-лате з карамельним сиропом</td><td>75</td></tr>
+        <tr><td>Свіжовичавлений апельсиновий фреш</td><td>60</td></tr>
+        <tr><td>Мінеральна вода (газована)</td><td>30</td></tr>
+      </table>
+    </div>
+    <div class="table-container">
+      <h2>Коктейлі</h2>
+      <table>
+        <tr><td>Віргін Мохіто</td><td>120</td></tr>
+        <tr><td>Санрайз Фреш (апельсин–гранат)</td><td>110</td></tr>
+        <tr><td>Ягідний Фізз (малина–чорниця)</td><td>115</td></tr>
+        <tr><td>Тропік Дрім (ананас–кокос)</td><td>125</td></tr>
+      </table>
+    </div>
+  </div>
+  <div class="btntwo" id="backBtn"><a href="#" class="btn">Назад</a></div>
+  <script>
+    
+  document.getElementById('backBtn').addEventListener('click', () => {
+    window.location.href = 'index.html';
+  });
+
+    
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.favorite').forEach(icon => {
+        icon.addEventListener('click', () => {
+          
+          icon.classList.toggle('far');
+          icon.classList.toggle('fas');
+         
+          icon.classList.toggle('liked');
+        });
+      });
+    });
+  </script>
+  
+</body>
+</html>
